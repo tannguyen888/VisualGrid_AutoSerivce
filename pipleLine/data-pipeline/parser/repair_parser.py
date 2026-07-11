@@ -22,5 +22,8 @@ Future implementation steps:
 
 class RepairParser:
     def parse(self, raw_data: dict) -> dict:
-        # TODO: convert raw repair data into internal schema.
+        # Bước 1: tạo biến repair_payload.
+        # repair_payload = {}
+        # Bước 2: tách steps, tools, torque, warnings.
+        # Bước 3: return dữ liệu chuẩn hoá.
         return {}

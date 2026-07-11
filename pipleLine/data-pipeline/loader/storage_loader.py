@@ -22,5 +22,9 @@ Future implementation steps:
 
 class StorageLoader:
     def save(self, payload: bytes) -> str:
-        # TODO: persist an artifact and return its reference.
+        # Bước 1: tạo biến storage_path hoặc file_key.
+        # storage_key = ""
+        # artifact_bytes = payload
+        # Bước 2: ghi file hoặc upload blob.
+        # Bước 3: return đường dẫn/reference đã lưu.
         return ""

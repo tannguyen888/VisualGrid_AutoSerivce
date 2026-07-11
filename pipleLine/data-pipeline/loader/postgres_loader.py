@@ -24,5 +24,9 @@ Future implementation steps:
 
 class PostgresLoader:
     def save(self, payload: dict) -> None:
-        # TODO: persist the payload into PostgreSQL.
+        # Bước 1: tạo biến connection/session.
+        # session = None
+        # record = payload
+        # Bước 2: insert/update/upsert record.
+        # Bước 3: commit hoặc rollback.
         pass

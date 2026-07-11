@@ -29,7 +29,15 @@ Future implementation steps:
 
 
 def main() -> None:
-    # TODO: implement the ETL orchestration flow.
+    # Bước 1: tạo các biến điều phối chính cho pipeline.
+    # sources = {"vin": VinSource(), "parts": PartsSource(), "pdf": PdfSource()}
+    # raw_payload = {}
+    # parsed_payload = {}
+    # validated_payload = {}
+    # storage_result = None
+    # Bước 2: gọi từng source để lấy dữ liệu thô.
+    # Bước 3: chạy extractor -> parser -> transformer -> validator.
+    # Bước 4: đẩy dữ liệu sang loader tương ứng.
     pass
 
 

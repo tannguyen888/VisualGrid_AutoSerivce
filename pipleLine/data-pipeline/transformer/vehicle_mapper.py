@@ -22,5 +22,8 @@ Future implementation steps:
 
 class VehicleMapper:
     def map(self, vehicle_data: dict) -> dict:
-        # TODO: map vehicle data to storage schema.
+        # Bước 1: tạo biến mapped_vehicle.
+        # mapped_vehicle = {}
+        # Bước 2: map schema parser -> database.
+        # Bước 3: trả payload sẵn sàng lưu.
         return {}

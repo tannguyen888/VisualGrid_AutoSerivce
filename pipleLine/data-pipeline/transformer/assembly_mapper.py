@@ -22,5 +22,8 @@ Future implementation steps:
 
 class AssemblyMapper:
     def map(self, assembly_data: dict) -> dict:
-        # TODO: map assembly hierarchy into storage schema.
+        # Bước 1: tạo biến mapped_assembly.
+        # mapped_assembly = {}
+        # Bước 2: link assembly với component.
+        # Bước 3: trả payload chuẩn để loader lưu.
         return {}

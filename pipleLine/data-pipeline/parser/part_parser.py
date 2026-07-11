@@ -22,5 +22,8 @@ Future implementation steps:
 
 class PartParser:
     def parse(self, raw_data: dict) -> dict:
-        # TODO: parse parts payload into internal format.
+        # Bước 1: tạo biến part_payload.
+        # part_payload = {}
+        # Bước 2: map OEM, fitment, assembly link.
+        # Bước 3: trả dict đã chuẩn hoá.
         return {}

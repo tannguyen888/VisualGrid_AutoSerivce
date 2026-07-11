@@ -20,7 +20,11 @@ Future implementation steps:
 """
 
 
+
 class RepairMapper:
     def map(self, repair_data: dict) -> dict:
-        # TODO: map repair data into storage schema.
+        # Bước 1: tạo biến mapped_repair.
+        # mapped_repair = {}
+        # Bước 2: map các bước sửa, torque, safety notes.
+        # Bước 3: trả dữ liệu sẵn sàng lưu.
         return {}

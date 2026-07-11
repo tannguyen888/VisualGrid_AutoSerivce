@@ -22,5 +22,8 @@ Future implementation steps:
 
 class SchemaValidator:
     def validate(self, payload: dict) -> bool:
-        # TODO: validate schema and return whether the payload is valid.
+        # Bước 1: tạo biến validation_errors.
+        # validation_errors = []
+        # Bước 2: kiểm tra từng field bắt buộc.
+        # Bước 3: return True/False theo kết quả.
         return True

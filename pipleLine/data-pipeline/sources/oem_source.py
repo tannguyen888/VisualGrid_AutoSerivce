@@ -22,5 +22,10 @@ Future implementation steps:
 
 class OemSource:
     def fetch(self, oem_number: str) -> dict:
-        # TODO: retrieve OEM data and return raw payload.
+        # Bước 1: tạo biến request cho OEM source.
+        # endpoint = ""
+        # query_params = {"oem_number": oem_number}
+        # response = None
+        # Bước 2: gọi nguồn OEM.
+        # Bước 3: return raw response.
         return {}

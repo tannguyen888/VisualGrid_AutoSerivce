@@ -21,4 +21,9 @@ Future implementation steps:
 
 
 class RepairSchema:
+    # Bước 1: tạo các field cho repair schema.
+    # title: str
+    # steps: list[str]
+    # torque_values: list[str]
+    # safety_notes: list[str]
     pass

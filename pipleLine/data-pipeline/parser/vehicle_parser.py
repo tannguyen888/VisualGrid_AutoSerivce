@@ -22,5 +22,8 @@ Future implementation steps:
 
 class VehicleParser:
     def parse(self, raw_data: dict) -> dict:
-        # TODO: map raw vehicle data into platform schema.
+        # Bước 1: tạo biến vehicle_payload.
+        # vehicle_payload = {}
+        # Bước 2: map make/model/year/VIN.
+        # Bước 3: return schema chuẩn cho transformer.
         return {}

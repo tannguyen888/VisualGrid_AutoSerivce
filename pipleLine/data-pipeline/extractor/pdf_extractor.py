@@ -22,5 +22,9 @@ Future implementation steps:
 
 class PdfExtractor:
     def extract(self, pdf_bytes: bytes) -> str:
-        # TODO: extract text from PDF content.
+        # Bước 1: tạo biến document/page text.
+        # document = None
+        # extracted_text = ""
+        # Bước 2: đọc từng trang PDF.
+        # Bước 3: gộp text rồi trả về.
         return ""

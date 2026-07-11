@@ -23,5 +23,11 @@ Future implementation steps:
 
 class PartsSource:
     def fetch(self, query: str) -> dict:
-        # TODO: query the parts provider and return raw payload.
+        # Bước 1: tạo biến query request cho parts provider.
+        # base_url = ""
+        # headers = {}
+        # payload = {"query": query}
+        # response = None
+        # Bước 2: gọi provider và nhận raw payload.
+        # Bước 3: trả dữ liệu thô cho parser.
         return {}

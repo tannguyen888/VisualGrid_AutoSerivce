@@ -21,4 +21,10 @@ Future implementation steps:
 
 
 class VehicleSchema:
+    # Bước 1: tạo các field cho vehicle schema.
+    # make: str
+    # model: str
+    # year: int
+    # vin: str
+    # Bước 2: thêm validation rule khi bạn bắt đầu code.
     pass

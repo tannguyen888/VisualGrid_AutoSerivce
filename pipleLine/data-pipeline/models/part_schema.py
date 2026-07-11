@@ -21,4 +21,9 @@ Future implementation steps:
 
 
 class PartSchema:
+    # Bước 1: tạo các field cho part schema.
+    # oem_number: str
+    # name: str
+    # fitment: list[str]
+    # assembly_ref: str
     pass

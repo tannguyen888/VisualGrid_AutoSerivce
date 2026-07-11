@@ -22,5 +22,9 @@ Future implementation steps:
 
 class MongoLoader:
     def save(self, payload: dict) -> None:
-        # TODO: persist the payload into MongoDB.
+        # Bước 1: tạo biến collection/document.
+        # collection = None
+        # document = payload
+        # Bước 2: lưu document vào MongoDB.
+        # Bước 3: trả trạng thái hoặc id nếu cần.
         pass

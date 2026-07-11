@@ -22,5 +22,9 @@ Future implementation steps:
 
 class XmlExtractor:
     def extract(self, xml_text: str) -> dict:
-        # TODO: parse XML into structured data.
+        # Bước 1: tạo biến xml_root hoặc tree.
+        # xml_root = None
+        # parsed_data = {}
+        # Bước 2: đọc XML và map node sang dict.
+        # Bước 3: trả kết quả chuẩn hoá.
         return {}

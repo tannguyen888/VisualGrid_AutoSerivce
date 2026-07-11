@@ -22,5 +22,10 @@ Future implementation steps:
 
 class PdfSource:
     def fetch(self, url: str) -> bytes:
-        # TODO: download PDF bytes from the source system.
+        # Bước 1: tạo biến tải file PDF.
+        # request_url = url
+        # pdf_bytes = b""
+        # response = None
+        # Bước 2: tải nội dung PDF.
+        # Bước 3: trả bytes cho extractor.
         return b""

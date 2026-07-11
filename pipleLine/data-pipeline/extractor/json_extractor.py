@@ -22,5 +22,8 @@ Future implementation steps:
 
 class JsonExtractor:
     def extract(self, raw_json: str) -> dict:
-        # TODO: parse JSON into structured data.
+        # Bước 1: tạo biến parsed_data.
+        # parsed_data = {}
+        # Bước 2: chuyển raw_json -> dict/list.
+        # Bước 3: return dữ liệu đã parse.
         return {}
