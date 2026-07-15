@@ -1,4 +1,4 @@
-﻿package com.cardiag.config;
+package com.cardiag.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

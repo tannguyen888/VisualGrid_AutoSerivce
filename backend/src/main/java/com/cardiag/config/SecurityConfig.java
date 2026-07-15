@@ -1,6 +1,6 @@
-﻿package com.cardiag.config;
+package com.cardiag.config;
 
-import com.cardiag.common.security.JwtFilter;
+import com.cardiag.config.security.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

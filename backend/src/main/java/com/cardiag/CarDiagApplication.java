@@ -1,4 +1,4 @@
-﻿package com.cardiag;
+package com.cardiag;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

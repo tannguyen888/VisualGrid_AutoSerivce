@@ -1,4 +1,4 @@
-﻿package com.cardiag.config;
+package com.cardiag.config;
 
 import lombok.Getter;
 import lombok.Setter;

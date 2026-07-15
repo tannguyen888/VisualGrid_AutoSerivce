@@ -1,4 +1,4 @@
-﻿package com.cardiag.config;
+package com.cardiag.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
