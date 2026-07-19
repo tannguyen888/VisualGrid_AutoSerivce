@@ -1,29 +1,34 @@
 """
-TODO:
-JSON extractor.
-
-What this file does:
-- Reads JSON payloads and converts them to Python structures.
+Purpose:
+- JSON extractor for API payloads and serialized source snapshots.
 
 Input:
-- Raw JSON string or bytes.
+- Raw JSON payload as string or bytes.
 
 Output:
-- Parsed dict/list structure.
+- Parsed Python object.
 
-Dependencies:
-- json
+Responsibilities:
+- Decode payload safely.
+- Raise meaningful parsing errors.
 
-Future implementation steps:
-- Add schema detection
-- Handle invalid payload recovery
+TODO implementation notes:
+- Add schema fingerprinting for provider drift detection.
+- Add line/column mapping for parser diagnostics.
 """
+
+from __future__ import annotations
+
+import json
+from typing import Any
 
 
 class JsonExtractor:
-    def extract(self, raw_json: str) -> dict:
-        # Bước 1: tạo biến parsed_data.
-        # parsed_data = {}
-        # Bước 2: chuyển raw_json -> dict/list.
-        # Bước 3: return dữ liệu đã parse.
-        return {}
+    def extract(self, raw_json: str | bytes | dict[str, Any] | list[Any]) -> dict[str, Any] | list[Any]:
+        if isinstance(raw_json, (dict, list)):
+            return raw_json
+        if isinstance(raw_json, bytes):
+            raw_json = raw_json.decode("utf-8", errors="replace")
+        if not raw_json:
+            return {}
+        return json.loads(raw_json)

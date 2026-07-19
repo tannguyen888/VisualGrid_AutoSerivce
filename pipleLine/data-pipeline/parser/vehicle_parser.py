@@ -1,29 +1,32 @@
 """
-TODO:
-Vehicle parser.
-
-What this file does:
-- Converts raw vehicle payloads into internal schema.
+Purpose:
+- Parse raw vehicle payload into semantic fields.
 
 Input:
-- Raw vehicle data.
+- Raw provider vehicle payload.
 
 Output:
-- Normalized vehicle dictionary.
+- Parsed vehicle dictionary.
 
-Dependencies:
-- models.vehicle_schema
+Responsibilities:
+- Extract make/model/year/engine/vin across varying key names.
+- Return parser-normalized representation for mapper stage.
 
-Future implementation steps:
-- Add field normalization
-- Add trim/year inference
+TODO implementation notes:
+- Add trim-level parsing and market variants.
+- Add provider-specific parser profiles.
 """
+
+from __future__ import annotations
 
 
 class VehicleParser:
     def parse(self, raw_data: dict) -> dict:
-        # Bước 1: tạo biến vehicle_payload.
-        # vehicle_payload = {}
-        # Bước 2: map make/model/year/VIN.
-        # Bước 3: return schema chuẩn cho transformer.
-        return {}
+        return {
+            "vin": raw_data.get("vin") or raw_data.get("VIN"),
+            "make": raw_data.get("make") or raw_data.get("manufacturer") or "",
+            "model": raw_data.get("model") or raw_data.get("vehicleModel") or "",
+            "year": raw_data.get("year") or raw_data.get("modelYear") or 0,
+            "engine": raw_data.get("engine") or raw_data.get("engineType"),
+            "source": raw_data.get("source", "vehicle_provider"),
+        }

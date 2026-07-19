@@ -1,33 +1,32 @@
 """
-TODO:
-VIN source connector.
-
-What this file does:
-- Fetches raw vehicle details from an external VIN provider.
+Purpose:
+- VIN source connector for fetching raw vehicle details.
 
 Input:
 - VIN string.
 
 Output:
-- Raw JSON/dict from provider.
+- Raw provider JSON payload.
 
-Dependencies:
-- requests
+Responsibilities:
+- Validate VIN input shape.
+- Call VIN provider endpoint and return raw data.
 
-Future implementation steps:
-- Add authentication
-- Add timeout/retry handling
-- Normalize response shape
+TODO implementation notes:
+- Add per-provider VIN checksum validation rules.
+- Add fallback provider chain for failed lookups.
 """
 
+from __future__ import annotations
 
-class VinSource:
-    def fetch(self, vin: str) -> dict:
-        # Bước 1: tạo biến request cho VIN provider.
-        # base_url = ""
-        # headers = {}
-        # params = {"vin": vin}
-        # response = None
-        # Bước 2: gọi API lấy dữ liệu thô.
-        # Bước 3: trả về dict JSON chưa xử lý.
-        return {}
+from typing import Any
+
+from sources.base_source import BaseSource
+
+
+class VinSource(BaseSource):
+    def fetch(self, **kwargs: Any) -> dict[str, Any]:
+        vin = str(kwargs.get("vin", "")).strip().upper()
+        if not vin:
+            raise ValueError("vin is required")
+        return self._request_json(path="vin/decode", params={"vin": vin})

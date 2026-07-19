@@ -1,30 +1,35 @@
 """
-TODO:
-Repair mapper.
-
-What this file does:
-- Converts parsed repair data into database-ready records.
+Purpose:
+- Normalize parsed repair payload for canonical internal schema.
 
 Input:
-- Parsed repair schema.
+- Parsed repair dictionary.
 
 Output:
-- Storage-friendly repair record.
+- Canonical repair payload for validation/loading.
 
-Dependencies:
-- models.repair_schema
+Responsibilities:
+- Standardize list fields and remove empty entries.
+- Keep format stable for document-oriented storage.
 
-Future implementation steps:
-- Normalize steps and warnings
-- Prepare loader payloads
+TODO implementation notes:
+- Add cross-linking to parts and assembly references.
+- Add procedure version metadata.
 """
 
+from __future__ import annotations
 
 
 class RepairMapper:
     def map(self, repair_data: dict) -> dict:
-        # Bước 1: tạo biến mapped_repair.
-        # mapped_repair = {}
-        # Bước 2: map các bước sửa, torque, safety notes.
-        # Bước 3: trả dữ liệu sẵn sàng lưu.
-        return {}
+        def _compact(items: list[str] | None) -> list[str]:
+            return [str(item).strip() for item in (items or []) if str(item).strip()]
+
+        return {
+            "title": str(repair_data.get("title") or "Repair Procedure").strip(),
+            "steps": _compact(repair_data.get("steps")),
+            "tools": _compact(repair_data.get("tools")),
+            "torque_values": _compact(repair_data.get("torque_values")),
+            "safety_notes": _compact(repair_data.get("safety_notes")),
+            "source": repair_data.get("source", "unknown"),
+        }

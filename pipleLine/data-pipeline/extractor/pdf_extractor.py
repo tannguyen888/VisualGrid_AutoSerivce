@@ -1,30 +1,38 @@
 """
-TODO:
-PDF extractor.
-
-What this file does:
-- Extracts text and metadata from repair PDFs.
+Purpose:
+- PDF extractor for repair manuals and service documents.
 
 Input:
-- PDF bytes or file path.
+- PDF payload as bytes.
 
 Output:
-- Raw text extracted from the document.
+- Extracted plain text preserving page boundaries.
 
-Dependencies:
-- pymupdf
+Responsibilities:
+- Read each PDF page and collect text blocks.
+- Return combined text for parser stage.
 
-Future implementation steps:
-- Preserve page boundaries
-- Extract tables and headings
+TODO implementation notes:
+- Add table/image extraction output channels.
+- Add OCR fallback for scanned documents.
 """
+
+from __future__ import annotations
 
 
 class PdfExtractor:
     def extract(self, pdf_bytes: bytes) -> str:
-        # Bước 1: tạo biến document/page text.
-        # document = None
-        # extracted_text = ""
-        # Bước 2: đọc từng trang PDF.
-        # Bước 3: gộp text rồi trả về.
-        return ""
+        if not pdf_bytes:
+            return ""
+
+        try:
+            import fitz  # type: ignore[import-not-found]
+        except ImportError as exc:
+            raise RuntimeError("PyMuPDF is required: pip install pymupdf") from exc
+
+        page_texts: list[str] = []
+        with fitz.open(stream=pdf_bytes, filetype="pdf") as document:
+            for page_index, page in enumerate(document, start=1):
+                text = page.get_text("text").strip()
+                page_texts.append(f"[PAGE {page_index}]\n{text}")
+        return "\n\n".join(page_texts)

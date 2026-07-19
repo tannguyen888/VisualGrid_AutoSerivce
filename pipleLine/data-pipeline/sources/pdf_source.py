@@ -1,31 +1,27 @@
 """
-TODO:
-PDF source connector.
-
-What this file does:
-- Downloads or reads PDF repair documents.
+Purpose:
+- Backward-compatible PDF source adapter.
 
 Input:
-- URL or file reference.
+- Document URL.
 
 Output:
 - PDF bytes.
 
-Dependencies:
-- requests
+Responsibilities:
+- Delegate PDF download to document source workflow.
+- Keep compatibility with earlier pipeline imports.
 
-Future implementation steps:
-- Support authenticated downloads
-- Add file integrity checks
+TODO implementation notes:
+- Remove adapter when all callers migrate to document_source.
 """
 
+from __future__ import annotations
 
-class PdfSource:
+from sources.document_source import DocumentSource
+
+
+class PdfSource(DocumentSource):
     def fetch(self, url: str) -> bytes:
-        # Bước 1: tạo biến tải file PDF.
-        # request_url = url
-        # pdf_bytes = b""
-        # response = None
-        # Bước 2: tải nội dung PDF.
-        # Bước 3: trả bytes cho extractor.
-        return b""
+        payload = super().fetch(url=url)
+        return payload.get("content", b"")

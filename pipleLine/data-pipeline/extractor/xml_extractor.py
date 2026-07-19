@@ -1,30 +1,42 @@
 """
-TODO:
-XML extractor.
-
-What this file does:
-- Parses automotive XML data into a structured form.
+Purpose:
+- XML extractor for automotive catalog and export payloads.
 
 Input:
-- XML text or file path.
+- XML payload as string or bytes.
 
 Output:
-- Parsed dictionary or tree representation.
+- Nested dictionary representation.
 
-Dependencies:
-- xml.etree.ElementTree or lxml
+Responsibilities:
+- Parse XML safely.
+- Convert nodes recursively into serializable structures.
 
-Future implementation steps:
-- Map XML tags to domain fields
-- Add schema validation
+TODO implementation notes:
+- Add namespace-aware mapping profiles.
+- Add large-file streaming parser mode.
 """
+
+from __future__ import annotations
+
+import xml.etree.ElementTree as ET
+from typing import Any
+
+
+def _node_to_dict(node: ET.Element) -> dict[str, Any]:
+    children = list(node)
+    payload: dict[str, Any] = {"tag": node.tag, "attributes": dict(node.attrib)}
+    text = (node.text or "").strip()
+    if text:
+        payload["text"] = text
+    if children:
+        payload["children"] = [_node_to_dict(child) for child in children]
+    return payload
 
 
 class XmlExtractor:
-    def extract(self, xml_text: str) -> dict:
-        # Bước 1: tạo biến xml_root hoặc tree.
-        # xml_root = None
-        # parsed_data = {}
-        # Bước 2: đọc XML và map node sang dict.
-        # Bước 3: trả kết quả chuẩn hoá.
-        return {}
+    def extract(self, xml_text: str | bytes) -> dict[str, Any]:
+        if isinstance(xml_text, bytes):
+            xml_text = xml_text.decode("utf-8", errors="replace")
+        root = ET.fromstring(xml_text)
+        return _node_to_dict(root)

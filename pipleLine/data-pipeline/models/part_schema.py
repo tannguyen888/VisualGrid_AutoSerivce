@@ -1,29 +1,31 @@
 """
-TODO:
-Part schema model.
-
-What this file does:
-- Defines normalized part/OEM records.
+Purpose:
+- Defines canonical part schema used in ETL.
 
 Input:
-- Parsed part data.
+- Mapped part payload.
 
 Output:
-- Typed part schema object.
+- Validated part model instance.
 
-Dependencies:
-- pydantic
+Responsibilities:
+- Validate OEM identifiers and compatibility list.
+- Keep normalized fields for relational storage.
 
-Future implementation steps:
-- Add fitment relations
-- Add OEM number normalization
+TODO implementation notes:
+- Add manufacturer master-data validation.
+- Add lifecycle/supersession constraints.
 """
 
+from __future__ import annotations
 
-class PartSchema:
-    # Bước 1: tạo các field cho part schema.
-    # oem_number: str
-    # name: str
-    # fitment: list[str]
-    # assembly_ref: str
-    pass
+from pydantic import BaseModel, Field
+
+
+class PartSchema(BaseModel):
+    oem_number: str = Field(min_length=1)
+    name: str = Field(min_length=1)
+    component: str | None = None
+    compatibility: list[str] = Field(default_factory=list)
+    assembly_ref: str | None = None
+    source: str = Field(default="unknown")

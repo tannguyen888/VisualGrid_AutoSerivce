@@ -1,29 +1,48 @@
 """
-TODO:
-Schema validator.
-
-What this file does:
-- Validates transformed records before they are persisted.
+Purpose:
+- Schema-level validation for canonical ETL payloads.
 
 Input:
-- Normalized record payloads.
+- Entity name and transformed payload.
 
 Output:
-- Validation result or exception.
+- Validated model dumped as dictionary.
 
-Dependencies:
-- pydantic or custom schema definitions
+Responsibilities:
+- Validate records against Pydantic schema models.
+- Return structured errors for invalid records.
 
-Future implementation steps:
-- Add per-entity validation rules
-- Add error reporting details
+TODO implementation notes:
+- Add granular error codes for monitoring dashboards.
+- Add strict mode for production hard-fail enforcement.
 """
+
+from __future__ import annotations
+
+from typing import Any
+
+from pydantic import ValidationError
+
+from models.assembly_schema import AssemblySchema
+from models.part_schema import PartSchema
+from models.repair_schema import RepairSchema
+from models.vehicle_schema import VehicleSchema
+
+
+MODEL_BY_ENTITY = {
+    "vehicle": VehicleSchema,
+    "part": PartSchema,
+    "repair": RepairSchema,
+    "assembly": AssemblySchema,
+}
 
 
 class SchemaValidator:
-    def validate(self, payload: dict) -> bool:
-        # Bước 1: tạo biến validation_errors.
-        # validation_errors = []
-        # Bước 2: kiểm tra từng field bắt buộc.
-        # Bước 3: return True/False theo kết quả.
-        return True
+    def validate(self, entity: str, payload: dict[str, Any]) -> dict[str, Any]:
+        model = MODEL_BY_ENTITY.get(entity)
+        if model is None:
+            raise ValueError(f"Unsupported entity for schema validation: {entity}")
+        try:
+            return model.model_validate(payload).model_dump()
+        except ValidationError as exc:
+            raise ValueError(f"Schema validation failed for {entity}: {exc}") from exc

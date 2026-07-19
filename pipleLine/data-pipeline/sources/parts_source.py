@@ -1,33 +1,32 @@
 """
-TODO:
-Parts provider connector.
-
-What this file does:
-- Pulls OEM number, part fitment, and assembly relationships.
+Purpose:
+- Parts source connector for OEM parts and compatibility payloads.
 
 Input:
-- Query parameters, SKU, OEM number, or vehicle context.
+- Query string, OEM number, or provider-specific filters.
 
 Output:
-- Raw provider response as dict.
+- Raw parts provider JSON payload.
 
-Dependencies:
-- requests
+Responsibilities:
+- Submit source requests for part catalog data.
+- Return unmodified provider response to ETL extractors.
 
-Future implementation steps:
-- Support pagination
-- Add provider mapping
-- Cache lookups where needed
+TODO implementation notes:
+- Add pagination loop support.
+- Add provider-specific query builders.
 """
 
+from __future__ import annotations
 
-class PartsSource:
-    def fetch(self, query: str) -> dict:
-        # Bước 1: tạo biến query request cho parts provider.
-        # base_url = ""
-        # headers = {}
-        # payload = {"query": query}
-        # response = None
-        # Bước 2: gọi provider và nhận raw payload.
-        # Bước 3: trả dữ liệu thô cho parser.
-        return {}
+from typing import Any
+
+from sources.base_source import BaseSource
+
+
+class PartsSource(BaseSource):
+    def fetch(self, **kwargs: Any) -> dict[str, Any]:
+        query = str(kwargs.get("query", "")).strip()
+        oem_number = str(kwargs.get("oem_number", "")).strip()
+        params = {"query": query, "oem_number": oem_number}
+        return self._request_json(path="parts/search", params=params)

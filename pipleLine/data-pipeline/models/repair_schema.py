@@ -1,29 +1,31 @@
 """
-TODO:
-Repair schema model.
-
-What this file does:
-- Defines normalized repair document records.
+Purpose:
+- Defines canonical repair schema for procedures and manuals.
 
 Input:
-- Parsed repair instructions and warnings.
+- Mapped repair payload.
 
 Output:
-- Typed repair schema object.
+- Validated repair model instance.
 
-Dependencies:
-- pydantic
+Responsibilities:
+- Keep structured steps, tools, torque values, and safety notes.
+- Provide a consistent shape for MongoDB storage.
 
-Future implementation steps:
-- Add step collections
-- Add safety and torque structures
+TODO implementation notes:
+- Add multilingual text support.
+- Add reference links to diagrams and assemblies.
 """
 
+from __future__ import annotations
 
-class RepairSchema:
-    # Bước 1: tạo các field cho repair schema.
-    # title: str
-    # steps: list[str]
-    # torque_values: list[str]
-    # safety_notes: list[str]
-    pass
+from pydantic import BaseModel, Field
+
+
+class RepairSchema(BaseModel):
+    title: str = Field(min_length=1)
+    steps: list[str] = Field(default_factory=list)
+    tools: list[str] = Field(default_factory=list)
+    torque_values: list[str] = Field(default_factory=list)
+    safety_notes: list[str] = Field(default_factory=list)
+    source: str = Field(default="unknown")

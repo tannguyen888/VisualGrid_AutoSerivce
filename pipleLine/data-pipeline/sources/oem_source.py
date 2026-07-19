@@ -1,31 +1,32 @@
 """
-TODO:
-OEM source connector.
-
-What this file does:
-- Retrieves OEM catalog or manufacturer reference data.
+Purpose:
+- OEM source connector for manufacturer reference data.
 
 Input:
-- OEM identifier or vehicle context.
+- OEM part number or catalog key.
 
 Output:
-- Raw OEM data.
+- Raw OEM provider JSON payload.
 
-Dependencies:
-- requests
+Responsibilities:
+- Query OEM provider endpoints.
+- Return raw payload for downstream parsing.
 
-Future implementation steps:
-- Add OEM catalog integration
-- Normalize catalog identifiers
+TODO implementation notes:
+- Add OEM supersession chain retrieval.
+- Add localized part naming support.
 """
 
+from __future__ import annotations
 
-class OemSource:
-    def fetch(self, oem_number: str) -> dict:
-        # Bước 1: tạo biến request cho OEM source.
-        # endpoint = ""
-        # query_params = {"oem_number": oem_number}
-        # response = None
-        # Bước 2: gọi nguồn OEM.
-        # Bước 3: return raw response.
-        return {}
+from typing import Any
+
+from sources.base_source import BaseSource
+
+
+class OemSource(BaseSource):
+    def fetch(self, **kwargs: Any) -> dict[str, Any]:
+        oem_number = str(kwargs.get("oem_number", "")).strip()
+        if not oem_number:
+            raise ValueError("oem_number is required")
+        return self._request_json(path="oem/catalog", params={"oem_number": oem_number})

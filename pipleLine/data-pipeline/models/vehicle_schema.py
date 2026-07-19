@@ -1,30 +1,39 @@
 """
-TODO:
-Vehicle schema model.
-
-What this file does:
-- Defines the normalized vehicle record shape.
+Purpose:
+- Defines canonical vehicle schema used across the ETL pipeline.
 
 Input:
-- Raw or parsed vehicle data.
+- Mapped vehicle payload from parser/transformer.
 
 Output:
-- Typed schema object.
+- Validated vehicle model instance.
 
-Dependencies:
-- pydantic
+Responsibilities:
+- Validate critical vehicle identity fields.
+- Enforce VIN and model year constraints.
 
-Future implementation steps:
-- Add validation constraints
-- Add optional manufacturer metadata
+TODO implementation notes:
+- Add region-specific trim constraints.
+- Add engine code reference validation.
 """
 
+from __future__ import annotations
 
-class VehicleSchema:
-    # Bước 1: tạo các field cho vehicle schema.
-    # make: str
-    # model: str
-    # year: int
-    # vin: str
-    # Bước 2: thêm validation rule khi bạn bắt đầu code.
-    pass
+from pydantic import BaseModel, Field, field_validator
+
+
+class VehicleSchema(BaseModel):
+    vin: str | None = Field(default=None, min_length=11, max_length=17)
+    make: str = Field(min_length=1)
+    model: str = Field(min_length=1)
+    year: int = Field(ge=1950, le=2100)
+    engine: str | None = None
+    source: str = Field(default="unknown")
+
+    @field_validator("vin")
+    @classmethod
+    def _normalize_vin(cls, value: str | None) -> str | None:
+        if value is None:
+            return value
+        cleaned = value.strip().upper()
+        return cleaned or None
