@@ -1,4 +1,4 @@
-﻿package com.cardiag.config;
+package com.cardiag.config;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;

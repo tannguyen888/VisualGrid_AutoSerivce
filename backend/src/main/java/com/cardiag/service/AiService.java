@@ -1,4 +1,4 @@
-﻿package com.cardiag.service;
+package com.cardiag.service;
 
 import com.cardiag.service.AiClient;
 import lombok.RequiredArgsConstructor;

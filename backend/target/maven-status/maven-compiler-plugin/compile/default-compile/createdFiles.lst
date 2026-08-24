@@ -4,13 +4,11 @@ com\cardiag\dto\ComponentResponse$ComponentResponseBuilder.class
 com\cardiag\response\ApiResponse$ApiResponseBuilder.class
 com\cardiag\service\AuthService.class
 com\cardiag\service\ObdService.class
-com\cardiag\common\util\DateUtils.class
 com\cardiag\config\RedisConfig.class
 com\cardiag\repository\DtcRepository.class
 com\cardiag\repository\AssemblyRepository.class
 com\cardiag\CarDiagApplication.class
 com\cardiag\dto\RepairResponse.class
-com\cardiag\service\VinService.class
 com\cardiag\model\Assembly.class
 com\cardiag\service\RepairService.class
 com\cardiag\dto\ObdRequest.class
@@ -24,16 +22,13 @@ com\cardiag\exception\BusinessException.class
 com\cardiag\model\RepairProcedure$RepairProcedureBuilder.class
 com\cardiag\service\DiagnosticService.class
 com\cardiag\model\Engine.class
-com\cardiag\controller\VinController.class
 com\cardiag\config\DatabaseConfig.class
 com\cardiag\dto\VinResponse$VinResponseBuilder.class
-com\cardiag\vin\client\VinApiClient.class
 com\cardiag\model\Engine$EngineBuilder.class
 com\cardiag\config\SwaggerConfig.class
 com\cardiag\service\AuthServiceImpl.class
 com\cardiag\dto\DiagnosticResponse.class
 com\cardiag\dto\AuthResponse$AuthResponseBuilder.class
-com\cardiag\ai\client\AiClient.class
 com\cardiag\controller\AuthController.class
 com\cardiag\model\Vehicle.class
 com\cardiag\config\SecurityConfig.class
@@ -54,7 +49,6 @@ com\cardiag\config\security\JwtProvider.class
 com\cardiag\exception\GlobalExceptionHandler.class
 com\cardiag\dto\ObdResponse$ObdResponseBuilder.class
 com\cardiag\model\DtcCode.class
-com\cardiag\controller\AiController.class
 com\cardiag\controller\DiagnosticController.class
 com\cardiag\dto\VehicleResponse$VehicleResponseBuilder.class
 com\cardiag\dto\RepairResponse$RepairResponseBuilder.class
@@ -69,7 +63,6 @@ com\cardiag\dto\AssemblyResponse$AssemblyResponseBuilder.class
 com\cardiag\dto\ObdResponse.class
 com\cardiag\config\security\UserPrincipal.class
 com\cardiag\controller\AssemblyController.class
-com\cardiag\service\AiService.class
 com\cardiag\model\Component$ComponentBuilder.class
 com\cardiag\dto\LoginRequest.class
 com\cardiag\dto\VehicleRequest.class

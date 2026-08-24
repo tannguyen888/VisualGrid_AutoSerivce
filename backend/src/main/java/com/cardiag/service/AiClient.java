@@ -1,4 +1,4 @@
-﻿package com.cardiag.service;
+package com.cardiag.service;
 
 import org.springframework.stereotype.Component;
 
