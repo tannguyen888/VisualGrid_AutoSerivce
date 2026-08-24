@@ -1,13 +1,33 @@
-from models.llm import DiagnosisRequest, DiagnosisResponse
-from utils.prompt_builder import build_diagnosis_prompt
+"""
+Purpose:
+- Backward-compatible diagnosis engine wrapper.
+
+Input:
+- Legacy DiagnosisRequest payload.
+
+Output:
+- Contract-compliant DiagnosisResponse.
+
+Dependencies:
+- asyncio
+- services.diagnosis_service
+
+Future implementation:
+- Remove wrapper after callers migrate to DiagnosisService.
+"""
+
+from __future__ import annotations
+
+import asyncio
+
+from models.request_model import DiagnosisRequest
+from models.response_model import DiagnosisResponse
+from services.diagnosis_service import DiagnosisService
 
 
 class DiagnosisEngine:
+    def __init__(self) -> None:
+        self.service = DiagnosisService()
+
     def analyze(self, request: DiagnosisRequest) -> DiagnosisResponse:
-        prompt = build_diagnosis_prompt(request.symptoms, request.vehicle_info)
-        return DiagnosisResponse(
-            summary="Diagnosis draft generated",
-            prompt=prompt,
-            probable_causes=["Unknown - connect to LLM or rules engine"],
-            recommended_actions=["Inspect DTC codes", "Check sensors", "Verify battery and wiring"],
-        )
+        return asyncio.run(self.service.diagnose(request))
