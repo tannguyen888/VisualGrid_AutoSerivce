@@ -1,11 +1,4 @@
 C:\project\java\HọcBackend\AutoCare\backend\src\main\java\com\cardiag\CarDiagApplication.java
-C:\project\java\HọcBackend\AutoCare\backend\src\main\java\com\cardiag\common\exception\BadRequestHandler.java
-C:\project\java\HọcBackend\AutoCare\backend\src\main\java\com\cardiag\common\exception\ErrorConstants.java
-C:\project\java\HọcBackend\AutoCare\backend\src\main\java\com\cardiag\common\exception\ExternalServiceException.java
-C:\project\java\HọcBackend\AutoCare\backend\src\main\java\com\cardiag\common\exception\GlobalExceptionHandler.java
-C:\project\java\HọcBackend\AutoCare\backend\src\main\java\com\cardiag\common\exception\ResourcesNotFound.java
-C:\project\java\HọcBackend\AutoCare\backend\src\main\java\com\cardiag\common\response\ApiResponse.java
-C:\project\java\HọcBackend\AutoCare\backend\src\main\java\com\cardiag\common\response\ErrorResponse.java
 C:\project\java\HọcBackend\AutoCare\backend\src\main\java\com\cardiag\config\DatabaseConfig.java
 C:\project\java\HọcBackend\AutoCare\backend\src\main\java\com\cardiag\config\DateUtils.java
 C:\project\java\HọcBackend\AutoCare\backend\src\main\java\com\cardiag\config\JwtConfig.java

@@ -1,21 +1,27 @@
-from pydantic import BaseModel, Field
+"""
+Purpose:
+- Backward-compatible model exports.
 
+Input:
+- Imports from legacy modules.
 
-class DiagnosisRequest(BaseModel):
-    symptoms: list[str] = Field(default_factory=list)
-    vehicle_info: str = ""
+Output:
+- Re-exported request/response models.
 
+Dependencies:
+- models.request_model
+- models.response_model
 
-class DiagnosisResponse(BaseModel):
-    summary: str
-    prompt: str
-    probable_causes: list[str]
-    recommended_actions: list[str]
+Future implementation:
+- Remove this compatibility file after full import migration.
+"""
 
+from models.request_model import ChatRequest, DiagnosisRequest
+from models.response_model import ChatResponse, DiagnosisResponse
 
-class ChatRequest(BaseModel):
-    message: str
-
-
-class ChatResponse(BaseModel):
-    message: str
+__all__ = [
+    "DiagnosisRequest",
+    "DiagnosisResponse",
+    "ChatRequest",
+    "ChatResponse",
+]

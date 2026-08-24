@@ -1,8 +1,20 @@
-from pydantic import BaseModel
+"""
+Purpose:
+- Backward-compatible embedding/search model exports.
 
+Input:
+- Imports from legacy modules.
 
-class SearchResult(BaseModel):
-    source: str
-    title: str
-    content: str
-    score: float
+Output:
+- Re-exported SearchResult model.
+
+Dependencies:
+- models.response_model
+
+Future implementation:
+- Remove this file once all imports use response_model directly.
+"""
+
+from models.response_model import SearchResult
+
+__all__ = ["SearchResult"]
