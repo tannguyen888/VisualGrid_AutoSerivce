@@ -12,4 +12,9 @@ import org.springframework.stereotype.Component;
 public class AiProperties {
 
     private String apiKey;
+
+    /**
+     * Shared secret AI_service must send as X-Internal-Api-Key to call /api/ai/**.
+     */
+    private String backendApiKey;
 }

@@ -38,3 +38,5 @@ carapi:
     batch-size: 200
     on-startup: false
 
+# ai.api-key / ai.backend-api-key are NOT set here - see application.properties (gitignored, local secrets)
+

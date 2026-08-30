@@ -8,3 +8,4 @@ carapi.api-token=
 carapi.api-secret=
 
 ai.api-key=
+ai.backend-api-key=

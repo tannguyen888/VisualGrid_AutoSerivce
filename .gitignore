@@ -1,4 +1,10 @@
 application.properties
+pipleLine/data-pipeline/.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
 
 # Java/Maven build output
 target/

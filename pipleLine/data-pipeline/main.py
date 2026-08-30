@@ -152,9 +152,52 @@ def run_pipeline(vin: str = "1HGCM82633A123456") -> PipelineRunResult:
 
 
 def main() -> None:
+    """One-off run of the real CarAPI sync (years/makes/models)."""
+    from carapi_pipeline import run_carapi_sync
+
+    result = run_carapi_sync()
+    LOGGER.info("CarAPI sync result: %s", result)
+
+
+def run_legacy_mock_pipeline() -> None:
+    """Legacy scaffold pipeline (VIN/parts/repair via mock/unconfigured sources), kept for reference."""
     result = run_pipeline()
-    LOGGER.info("Pipeline result: %s", result)
+    LOGGER.info("Legacy mock pipeline result: %s", result)
+
+
+def serve() -> None:
+    """Run the real CarAPI sync on a fixed daily schedule (settings.sync_cron_hour/minute)."""
+    import time
+
+    from carapi_pipeline import run_carapi_sync
+    from scheduler.sync_scheduler import SyncScheduler
+
+    logging.basicConfig(level=getattr(logging, settings.log_level.upper(), logging.INFO))
+
+    sync_scheduler = SyncScheduler(
+        cron_hour=settings.sync_cron_hour,
+        cron_minute=settings.sync_cron_minute,
+        max_retries=settings.max_retries,
+        retry_backoff_seconds=settings.retry_backoff_seconds,
+    )
+    sync_scheduler.start(job_callable=lambda: run_carapi_sync())
+    LOGGER.info(
+        "Pipeline scheduler running, CarAPI sync fires daily at %02d:%02d. Ctrl+C to stop.",
+        settings.sync_cron_hour,
+        settings.sync_cron_minute,
+    )
+    try:
+        while True:
+            time.sleep(60)
+    except KeyboardInterrupt:
+        sync_scheduler.stop()
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+
+    if "--serve" in sys.argv:
+        serve()
+    else:
+        main()
+

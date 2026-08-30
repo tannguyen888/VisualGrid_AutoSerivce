@@ -25,6 +25,10 @@ class DiagnosisRequest(BaseModel):
     code: str = Field(min_length=1, description="OBD/DTC code, e.g. P0301")
     symptom: str = Field(min_length=1, description="Observed symptom")
     top_k: int = Field(default=5, ge=1, le=20)
+    make: str = Field(default="", description="Vehicle make, used to look up backend context")
+    model: str = Field(default="", description="Vehicle model, used to look up backend context")
+    trim: str = Field(default="", description="Vehicle trim, used to look up backend context")
+    year: int | None = Field(default=None, description="Vehicle model year")
 
 
 class ChatRequest(BaseModel):
