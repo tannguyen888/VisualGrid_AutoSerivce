@@ -1,0 +1,10 @@
+# Local secrets for cardiag-backend. NOT committed to git (see AutoCare/.gitignore).
+# Copy this file to application.properties and fill in real values for your machine.
+spring.datasource.password=lab
+
+jwt.secret=c3VwZXItc2VjcmV0LWtleS1mb3ItY2FyZGlhZy1qd3QtdG9rZW4ta2V5LTEyMzQ1Ng==
+
+carapi.api-token=
+carapi.api-secret=
+
+ai.api-key=
